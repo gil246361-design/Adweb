@@ -1,0 +1,82 @@
+<div class="home">
+  <section class="search-row">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="ค้นหาจากชื่อร้าน"
+      (input)="onRestaurantSearch($event)"
+    />
+    <input
+      class="search-input"
+      type="text"
+      placeholder="ค้นหาจากชื่อเมนู"
+      (input)="onMenuSearch($event)"
+    />
+  </section>
+
+  <section class="filter-row">
+    <div class="filter-row-icons">
+      <button class="category-toggle" (click)="toggleCategoryMenu()" aria-label="กรองประเภทร้านอาหาร">
+        <span>{{ selectedCategory() ?? 'ทุกประเภทร้านอาหาร' }}</span>
+        <span class="chevron">▾</span>
+      </button>
+
+      <button class="favorites-icon-button" (click)="openFavorites()" aria-label="อาหารที่ชอบ">
+        <span class="heart-icon">♥</span>
+        @if (favoriteCount().length > 0) {
+          <span class="badge">{{ favoriteCount().length }}</span>
+        }
+      </button>
+    </div>
+
+    @if (showCategoryMenu()) {
+      <div class="category-dropdown">
+        <button class="category-option" (click)="selectCategory(null)">ทั้งหมด</button>
+        @for (category of categories; track category) {
+          <button class="category-option" (click)="selectCategory(category)">
+            {{ category }}
+          </button>
+        }
+      </div>
+    }
+  </section>
+
+  @if (isSearchingMenu()) {
+    <section class="menu-results">
+      <h2 class="section-title">ผลการค้นหาเมนู "{{ menuTerm() }}"</h2>
+      @if (menuResults().length === 0) {
+        <p class="empty-hint">ไม่พบเมนูที่ค้นหา</p>
+      }
+      @for (result of menuResults(); track result.menuItem.id) {
+        <button class="menu-result-row" (click)="openRestaurant(result.restaurant.id)">
+          <img class="menu-result-image" [src]="result.menuItem.image" [alt]="result.menuItem.name" />
+          <span class="menu-result-info">
+            <span class="menu-result-name">{{ result.menuItem.name }}</span>
+            <span class="menu-result-restaurant">{{ result.restaurant.name }}</span>
+          </span>
+          <span class="menu-result-rating">★ {{ result.menuItem.rating.toFixed(1) }}</span>
+        </button>
+      }
+    </section>
+  } @else {
+    <section class="restaurant-list">
+      @if (filteredRestaurants().length === 0) {
+        <p class="empty-hint">ไม่พบร้านอาหารที่ค้นหา</p>
+      }
+      @for (restaurant of filteredRestaurants(); track restaurant.id) {
+        <button class="restaurant-card" (click)="openRestaurant(restaurant.id)">
+          <img class="restaurant-image" [src]="restaurant.image" [alt]="restaurant.name" />
+          <span class="restaurant-info">
+            <span class="restaurant-name">{{ restaurant.name }}</span>
+            <span class="restaurant-category">{{ restaurant.category }}</span>
+            <span class="restaurant-tags">
+              @for (tag of restaurant.tags; track tag) {
+                <span class="tag-chip">{{ tag }}</span>
+              }
+            </span>
+          </span>
+        </button>
+      }
+    </section>
+  }
+</div>

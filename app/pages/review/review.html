@@ -1,0 +1,43 @@
+@if (entry(); as e) {
+  <div class="review-page">
+    <div class="banner">
+      <img class="banner-image" [src]="e.menuItem.image" [alt]="e.menuItem.name" />
+      <button class="back-button" (click)="goBack()" aria-label="กลับหน้าร้านอาหาร">←</button>
+    </div>
+
+    <div class="content">
+      <span class="restaurant-name">{{ e.restaurant.name }}</span>
+      <h1 class="menu-name">{{ e.menuItem.name }}</h1>
+
+      <div class="rating-summary">
+        <span class="stars">
+          @for (filled of stars(); track $index) {
+            <span [class.filled]="filled">★</span>
+          }
+        </span>
+        <span class="rating-number">{{ e.menuItem.rating.toFixed(1) }}</span>
+        <span class="review-count">({{ e.menuItem.reviews.length }} รีวิว)</span>
+      </div>
+
+      <h2 class="section-title">รีวิว</h2>
+      <div class="review-list">
+        @for (review of e.menuItem.reviews; track review.id) {
+          <div class="review-card">
+            <div class="review-top">
+              <span class="review-author">{{ review.author }}</span>
+              <span class="review-score">★ {{ review.score }}</span>
+            </div>
+            <p class="review-comment">{{ review.comment }}</p>
+          </div>
+        }
+      </div>
+
+      <p class="persistence-note">รายการโปรดของคุณจะยังอยู่แม้ปิดเบราว์เซอร์ไปแล้ว</p>
+    </div>
+  </div>
+} @else {
+  <div class="not-found">
+    <p>ไม่พบข้อมูลรีวิวของเมนูนี้</p>
+    <button (click)="goBack()">ย้อนกลับ</button>
+  </div>
+}

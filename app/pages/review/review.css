@@ -1,0 +1,143 @@
+.review-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.back-button {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-text);
+  font-size: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.content {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.restaurant-name {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.menu-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.rating-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 10px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-border);
+  font-size: 16px;
+}
+
+.stars .filled {
+  color: var(--color-accent-gold);
+}
+
+.rating-number {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.review-count {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.section-title {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.review-card {
+  padding: 12px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.review-author {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.review-score {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent-gold);
+}
+
+.review-comment {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.persistence-note {
+  margin-top: 18px;
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.not-found {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--color-text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
